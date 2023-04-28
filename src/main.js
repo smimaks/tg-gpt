@@ -4,8 +4,7 @@ import {code} from 'telegraf/format'
 import { config } from 'dotenv';
 import { converter } from './oggConverter.js';
 import { openai } from './openai.js';
-
-config()
+config();
 
 const INITIAL_SESSION = {
   messages: []
@@ -42,13 +41,15 @@ bot.on(message('voice'), async (ctx) => {
 
     ctx.session.messages.push({role: openai.roles.USER, content: text})
     const response = await openai.chat(ctx.session.messages)
+    if (response) {
+      ctx
+      .session
+      .messages
+      .push({role: openai.roles.ASSISTANT, content: response.content})
+  
+      await ctx.reply(response.content);
+    } else await ctx.reply(code('Произошла ошибка. Попробуйте чуть позже'))
 
-    ctx
-    .session
-    .messages
-    .push({role: openai.roles.ASSISTANT, content: response.content})
-
-    await ctx.reply(response.content);
   } catch (e) {
     console.log('Error voice', e.message);
   }
@@ -59,22 +60,25 @@ bot.on(message('text'), async (ctx) => {
   try {
 
     await ctx.reply(code('Сообщение приянто. Ожидаю ответ от сервера'))
-    
+
     ctx
     .session
     .messages
     .push({role: openai.roles.USER, content: ctx.message.text})
 
-    const response = await openai.chat(ctx.session.messages)
+    const response = await openai.chat(ctx.session.messages);
+    if (response) {
+      ctx
+      .session
+      .messages
+      .push({role: openai.roles.ASSISTANT, content: response.content})
+  
+      await ctx.reply(response.content);
+    } else await ctx.reply(code('Произошла ошибка. Попробуйте чуть позже'))
 
-    ctx
-    .session
-    .messages
-    .push({role: openai.roles.ASSISTANT, content: response.content})
 
-    await ctx.reply(response.content);
   } catch (e) {
-    console.log('Error voice', e.message);
+    console.log('Error text', e.message);
   }
 });
 
