@@ -5,36 +5,32 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import ffmmpeg from 'fluent-ffmpeg';
 import installer from '@ffmpeg-installer/ffmpeg';
-import {removeFile} from './utils.js'
+import { removeFile } from './utils.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 class OggConverter {
   constructor() {
-    ffmmpeg.setFfmpegPath(installer.path)
+    ffmmpeg.setFfmpegPath(installer.path);
   }
 
-  toMP3(input, output) {
+  async toMP3(input, output) {
     try {
       const outPutPath = resolve(dirname(input), `${output}.mp3`);
 
       return new Promise((resolve, reject) => {
         ffmmpeg(input)
-        .inputOption('-t 30')
-        .output(outPutPath)
-        .on('end', () => {
-          resolve(outPutPath)
-          removeFile(input)
-        })
-        .on('error', err => reject(err.message))
-        .run()
-
-        
-      })
-
-
-    } catch(e) {
-      console.log('MP3 create error', e)
+          .inputOption('-t 30')
+          .output(outPutPath)
+          .on('end', () => {
+            resolve(outPutPath);
+            removeFile(input);
+          })
+          .on('error', (err) => reject(err.message))
+          .run();
+      });
+    } catch (e) {
+      console.log('MP3 create error', e);
     }
   }
 
