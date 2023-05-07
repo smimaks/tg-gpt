@@ -8,6 +8,11 @@ export const envs = {
   OWNER_ID: process.env.OWNER_ID,
 };
 
+console.log(process.env.TELEGRAM_TOKEN);
+console.log(process.env.OPENAI_KEY);
+console.log(process.env.VK_API_KEY);
+console.log(process.env.OWNER_ID);
+
 const unsetEnvs = [];
 for (const [key, val] of Object.entries(envs)) {
   if (!val) unsetEnvs.push(key);

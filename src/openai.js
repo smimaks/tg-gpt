@@ -1,7 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { envs } from './libs/envs.js';
-import axios from 'axios';
-import * as fs from 'fs';
 
 class OpenAi {
   roles = {
