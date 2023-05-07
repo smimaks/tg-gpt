@@ -55,12 +55,11 @@ export function getRequest() {
 
   let counter = 0;
   const reqValues = Object.values(requestToGPT);
-  const requestLen = reqValues.length;
 
   for (const val of reqValues) {
     counter += 1;
 
-    if (counter === requestLen) {
+    if (counter === reqValues.length) {
       for (const val of reqValues) {
         val.isUsed = false;
       }
@@ -74,5 +73,6 @@ export function getRequest() {
       break;
     }
   }
+
   return requests;
 }

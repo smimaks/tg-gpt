@@ -9,8 +9,6 @@ class OpenAi {
     USER: 'user',
     SYSTEM: 'system',
   };
-  tokens = 0;
-  max_tokens = 4000;
 
   constructor(apiKey) {
     const configuration = new Configuration({
@@ -25,20 +23,6 @@ class OpenAi {
         model: 'gpt-3.5-turbo',
         messages: [{ role: this.roles.USER, content }],
       });
-
-      this.tokens += response.data.usage.total_tokens;
-
-      if (this.tokens >= this.max_tokens) {
-        await this.openai.createChatCompletion({
-          model: 'gpt-3.5-turbo',
-          messages: [{ role: this.roles.USER, content: 'сброс контекста' }],
-        });
-        return {
-          role: this.roles.SYSTEM,
-          content:
-            'Допустимый размер контекста превышен. Нажите команду /new и продолжите общение',
-        };
-      }
 
       return response.data.choices[0].message;
     } catch (e) {
