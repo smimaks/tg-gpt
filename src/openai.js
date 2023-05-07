@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
-import { envs } from './libs/envs.js';
+import { config } from 'dotenv';
+config();
 
 class OpenAi {
   roles = {
@@ -68,4 +69,4 @@ class OpenAi {
   }
 }
 
-export const openai = new OpenAi(envs.OPENAI_KEY);
+export const openai = new OpenAi(process.env.OPENAI_KEY);

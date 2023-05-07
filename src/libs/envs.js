@@ -2,16 +2,10 @@ import { config } from 'dotenv';
 config();
 
 export const envs = {
-  TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
   OPENAI_KEY: process.env.OPENAI_KEY,
   VK_API_KEY: process.env.VK_API_KEY,
   OWNER_ID: process.env.OWNER_ID,
 };
-
-console.log(process.env.TELEGRAM_TOKEN);
-console.log(process.env.OPENAI_KEY);
-console.log(process.env.VK_API_KEY);
-console.log(process.env.OWNER_ID);
 
 const unsetEnvs = [];
 for (const [key, val] of Object.entries(envs)) {
