@@ -27,16 +27,6 @@ class OpenAi {
     } catch (e) {
       if (e.response) {
         console.log(e.response.data);
-
-        const content =
-          e.response.status === 400
-            ? 'Превышен лимит контекста для этой модели'
-            : 'Превышено количесвто завпросов в минуту. Подождите несколько минут и продолжайте';
-
-        return {
-          role: this.roles.SYSTEM,
-          content,
-        };
       }
       console.log('GPT chat request error', e.message);
     }
