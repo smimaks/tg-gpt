@@ -20,7 +20,13 @@ class OpenAi {
     try {
       const response = await this.openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
-        messages: [{ role: this.roles.USER, content }],
+        messages: [
+          { role: this.roles.USER, content },
+          {
+            role: this.roles.SYSTEM,
+            content: 'Ты пишешь пост для аудитори в Вконтакте',
+          },
+        ],
       });
 
       return response.data.choices[0].message;

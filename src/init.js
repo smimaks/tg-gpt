@@ -7,7 +7,7 @@ export async function init() {
   try {
     const { text, imagePrompt } = getRequest();
     const response = await openai.chat(text);
-    console.info('Ответ GPT_3 получен');
+    console.info(new Date().toISOString(), 'Ответ GPT_3 получен');
     if (response?.content) await vkPost(response.content);
   } catch (e) {
     console.log('Init method Error', e.message);
