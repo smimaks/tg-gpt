@@ -32,7 +32,6 @@ class OpenAi {
       return response.data.choices[0].message;
     } catch (e) {
       if (e.response) {
-        console.log(e.response.data);
       }
       console.log('GPT chat request error', e.message);
     }
@@ -44,12 +43,9 @@ class OpenAi {
         prompt,
         size: '512x512',
       });
-      // console.log(resp.data.data[0].url);
       return resp.data.data[0].url;
     } catch (e) {
       if (e.response) {
-        console.log(e.response.data);
-
         const content =
           e.response.status === 400
             ? 'Превышен лимит контекста для этой модели'

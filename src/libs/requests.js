@@ -7,44 +7,46 @@ const lib = {
 export const requestToGPT = {
   science: {
     request: `Напиши интерсный факт из науки и объясни его. ${lib.sign}`,
-    image: 'Наука глазами нейросети',
+    image: 'draw an abstract picture about science',
     isUsed: false,
   },
   it: {
     request: `Напиши интерсный факт об it и объясни его. ${lib.sign}`,
-    image: 'IT глазами нейросети',
+    image: 'draw picture where js-developer make some great web-app',
     isUsed: false,
   },
   historyByGPT: {
     request: `Напиши про мир людей глазами GPT-3 и объясни почему ты так это видишь. ${lib.sign}`,
-    image: 'Мир людей глазами нейросети',
+    image: 'draw people world',
     isUsed: false,
   },
   medicine: {
     request: `Наиши интерсный факт об медицине и объясни его. ${lib.sign}`,
-    image: 'Нмедицина глазами нейросети',
+    image: 'draw an abstract picture about medicine',
     isUsed: false,
   },
   culture: {
     request: `Напиши интерсный факт о культуре и объясни его. ${lib.sign}`,
-    image: 'культура глазами нейросети',
+    image: 'draw some abstract picture about people culture',
     isUsed: false,
   },
   sport: {
-    request: `Напиши интерсный факт о  спорте и объясни его. ${lib.sign}`,
-    image: 'спорт глазами нейросети',
+    request: `Напиши что нибудь о спорте и объясни почему ты написал именно это. ${lib.sign}`,
+    image: 'draw an abstract picture about people sport',
     isUsed: false,
   },
   world: {
     request: `Выдумай свою новость и напиши что ее придумал ты и она не настоящая. ${lib.sign}`,
-    image: 'новости глазами нейросети',
+    image: 'draw an abstract picture about people news',
     isUsed: false,
   },
   joke: {
-    request: 'Расскажи анектод',
+    request: `Придумай шутку, которая станет лучшей шуткой тысячелетия. ${lib.sign}`,
+    image: 'нарисуй премию за самую тупую шутку',
   },
   ai: {
-    request: 'Интересный факт про исскуственный интелект',
+    request: `Самый необычный факт про исскуственный интелект. ${lib.sign}`,
+    image: 'нарисуй сам себя',
   },
 };
 
